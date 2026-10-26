@@ -1,39 +1,9 @@
-﻿# 📱 iPhone to Windows USB Photo Transfer Tool
-
-A lightweight, native PowerShell script designed to bypass cloud syncs, Wi-Fi bottlenecks, and browser restrictions by copying photos and videos directly from an iPhone to a Windows PC over a USB-C cable.
-
-## 🚀 Features
-- **Zero Third-Party Apps Required:** Uses native Windows Shell automation (`Shell.Application`) to interface with iOS Media Transfer Protocol (MTP).
-- **Direct Folder Traversal:** Automatically navigates iPhone internal storage directories (handling iOS-structured folders like `202602__`, `202203__`, etc.).
-- **Graceful Stop Key:** Press **`Q`** or **`ESC`** between folder transfers to safely halt the script at any time.
-- **Duplicate Safety:** Built-in Windows file-handling integration skips or manages conflicts cleanly.
-
----
-
-## 📋 Prerequisites
-1. **Windows 10 or 11** PC.
-2. An **iPhone** connected via a high-speed USB-C data cable.
-3. Your iPhone must be **unlocked** with the screen awake, and you must tap **"Trust This Computer"** when prompted.
-
----
-
-## ⚙️ How to Use
-
-1. Ensure your files are in `C:\photo-transfer`.
-2. Connect your iPhone to your PC via USB and unlock your screen.
-3. Open **PowerShell** and navigate to your directory:
-   ```powershell
-   cd C:\photo-transfer
-New-Item -ItemType Directory -Force -Path "C:\photo-transfer" | Out-Null; Set-Location "C:\photo-transfer";
-
-@'
-<#
+﻿<#
 .SYNOPSIS
     iPhone to Windows USB Photo Transfer Tool with Stop Key Support.
 .DESCRIPTION
     Connects to an iOS device via USB, accesses internal storage, 
     and copies media folders recursively to a local PC directory.
-    Includes support for halting the process gracefully.
 #>
 
 $shell = New-Object -ComObject Shell.Application
